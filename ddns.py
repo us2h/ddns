@@ -26,6 +26,13 @@ class DDNS:
     def run(self):
         # Get actual IP
         current_ip = get_current_ip(APP_CONFIG['IPIFY_URL'])
+
+        # Check if IP was retrieved
+        if current_ip is None:
+            print('Could not get current IP')
+            return None
+
+        # Check if IP was retrieved for the first time
         if self.last_ip_value is None:
             # Set IP for the first time
             self.last_ip_value = current_ip
